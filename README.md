@@ -3,7 +3,7 @@
 ## Installation
 
 ``` bash
-npm install discord.js winston require strawpoll --save
+npm install discord.js winston request --save
 ```
 
 Contact me on discord for auth.json

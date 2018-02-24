@@ -1,0 +1,114 @@
+{
+    "Aqua": {
+        "name": "Aqua",
+        "value": "0x1ABC9C"
+    }, 
+    "DarkAqua": {
+        "name": "DarkAqua",
+        "value": "0x11806A"
+    }, 
+    "Green": {
+        "name": "Green",
+        "value": "0x2ECC71"
+    }, 
+    "LightGreen": {
+        "name": "LightGreen",
+        "value": "0x00FF00"
+    }, 
+    "DarkGreen": {
+        "name": "DarkGreen",
+        "value": "0x1F8B4C"
+    }, 
+    "Blue": {
+        "name": "Blue",
+        "value": "0x3498DB"
+    }, 
+    "DarkBlue": {
+        "name": "DarkBlue",
+        "value": "0x206694"
+    }, 
+    "Cyan": {
+        "name": "Cyan",
+        "value": "0x00FFFF"
+    }, 
+    "DarkCyan": {
+        "name": "DarkCyan",
+        "value": "0x4cbbbf"
+    }, 
+    "Purple": {
+        "name": "Purple",
+        "value": "0x9B59B6"
+    }, 
+    "DarkPurple": {
+        "name": "DarkPurple",
+        "value": "0x71368A"
+    }, 
+    "Magenta": {
+        "name": "Magenta",
+        "value": "0xe91e63"
+    }, 
+    "DarkMagenta": {
+        "name": "DarkMagenta",
+        "value": "0xad1457"
+    }, 
+    "Gold": {
+        "name": "Gold",
+        "value": "0xF1C40F"
+    }, 
+    "DarkGold": {
+        "name": "DarkGold",
+        "value": "0xC27C0E"
+    }, 
+    "Orange": {
+        "name": "Orange",
+        "value": "0xE67E22"
+    }, 
+    "LightOrange": {
+        "name": "LightOrange",
+        "value": "0xffa07a"
+    }, 
+    "DarkOrange": {
+        "name": "DarkOrange",
+        "value": "0xA84300"
+    }, 
+    "Red": {
+        "name": "Red",
+        "value": "0xE74C3C"
+    }, 
+    "LightRed": {
+        "name": "LightRed",
+        "value": "0xff4c4c"
+    }, 
+    "DarkRed": {
+        "name": "DarkRed",
+        "value": "0x992D22"
+    }, 
+    "Pink": {
+        "name": "Pink",
+        "value": "0xFF69B4"
+    }, 
+    "Fuschia": {
+        "name": "Fuschia",
+        "value": "0xFF00FF"
+    }, 
+    "Yellow": {
+        "name": "Yellow",
+        "value": "0xfbf606"
+    }, 
+    "Navy": {
+        "name": "Navy",
+        "value": "0x34495E"
+    },
+    "DarkNavy": {
+        "name": "DarkNavy",
+        "value": "0x2C3E50"
+    },
+    "Black": {
+        "name": "Black",
+        "value": "0x80808"
+    }, 
+    "White": {
+        "name": "White",
+        "value": "0xFCFCFC"
+    }
+}

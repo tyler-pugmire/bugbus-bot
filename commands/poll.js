@@ -1,3 +1,3 @@
-exports.run = (bot, message, args, func) => {
-  func.poll(message, args);
+exports.run = (Discord, bot, message, args, func) => {
+  func.poll(Discord, message, args);
 }

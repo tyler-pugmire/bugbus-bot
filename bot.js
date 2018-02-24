@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-
-
+const request = require('request');
 
 const func = require('./functions.js'); // If this returns an error for you (or you might be on ubuntu/linux), try '../functions.js'
 console.log(func);
@@ -24,7 +23,7 @@ bot.on('message', message => {
 
   try {
     let commandFile = require(`./commands/${cmd}.js`); // This will assign that filename to commandFile
-    commandFile.run(bot, message, args, func); // This will add the functions, from the functions.js file into each commandFile.
+    commandFile.run(Discord, bot, message, args, func); // This will add the functions, from the functions.js file into each commandFile.
   } catch(e) { // If an error occurs, this will run.
     console.log(e.message); // This logs the error message
   } finally { // This will run after the first two clear up
@@ -36,7 +35,9 @@ bot.on('message', message => {
 bot.on('ready', () => {
     // We can post into the console that the bot launched.
     console.log('Bot started.');
+    
 });
 
 
 bot.login(require('./auth.json').token);
+

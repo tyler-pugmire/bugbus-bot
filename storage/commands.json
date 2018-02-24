@@ -1,0 +1,20 @@
+{
+    "Help": {
+        "name" : "help",
+        "group": "user",
+        "desc": "Displays list of commands",
+        "usage": "help [GROUP or COMMAND]"
+    },
+    "Poll": {
+        "name" : "poll",
+        "group": "user",
+        "desc": "Creates a strawpoll",
+        "usage": "poll <title> <option1> <option2>..."
+    },
+    "Bugbus": {
+        "name" : "bugbus",
+        "group": "user",
+        "desc": "Display bugbus image",
+        "usage": "bugbus"
+    }
+}

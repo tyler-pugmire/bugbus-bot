@@ -65,5 +65,5 @@ bot.registry
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
-bot.login(require('./auth.json').token);
+bot.login(process.env.TOKEN);
 

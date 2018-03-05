@@ -1,43 +1,69 @@
-const Discord = require('discord.js');
-const bot = new Discord.Client();
+const commando = require('discord.js-commando');
+const bot = new commando.Client({
+  owner: '94974307192541184',
+	commandPrefix: '!'
+});
+const path = require('path');
+const sqlite = require('sqlite');
 const request = require('request');
+const oneLine = require('common-tags').oneLine;
 
-const func = require('./functions.js'); // If this returns an error for you (or you might be on ubuntu/linux), try '../functions.js'
-console.log(func);
+//const func = require('./functions.js'); // If this returns an error for you (or you might be on ubuntu/linux), try '../functions.js'
+//console.log(func);
 
 // Global Settings
-const prefix = '!'; // This is the prefix, you can change it to whatever you want.
 
-// Listener Event: Runs whenever a message is received.
-bot.on('message', message => {
-  // Variables - Variables make it easy to call things, since it requires less typing.
-  let msg = message.content.toLowerCase(); // This variable takes the message, and turns it all into uppercase so it isn't case sensitive.
-  let sender = message.author; // This variable takes the message, and finds who the author is.
-  let args = message.content.slice(prefix.length).trim().split(" "); // This variable slices off the prefix, then puts the rest in an array based off the spaces
-  let cmd = args.shift().toLowerCase(); // This takes away the first object in the cont array, then puts it in this.
-  
-  if (sender.bot) 
-    return;
-  if (!message.content.startsWith(prefix)) 
-    return;
+bot.on('error', console.error)
+  .on('warn', console.warn)
+  .on('debug', console.log)
+  .on('ready', () => {
+    console.log(`Bot ready; logged in as ${bot.user.username}#${bot.user.discriminator} (${bot.user.id})`);
+  })
+  .on('disconnect', () => { console.warn('Disconnected!'); })
+  .on('reconnecting', () => { console.warn('Reconnecting...'); })
+  .on('commandError', (cmd, err) => {
+		if(err instanceof commando.FriendlyError) return;
+		console.error(`Error in command ${cmd.groupID}:${cmd.memberName}`, err);
+	})
+	.on('commandBlocked', (msg, reason) => {
+		console.log(oneLine`
+			Command ${msg.command ? `${msg.command.groupID}:${msg.command.memberName}` : ''}
+			blocked; ${reason}
+		`);
+	})
+	.on('commandPrefixChange', (guild, prefix) => {
+		console.log(oneLine`
+			Prefix ${prefix === '' ? 'removed' : `changed to ${prefix || 'the default'}`}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	})
+	.on('commandStatusChange', (guild, command, enabled) => {
+		console.log(oneLine`
+			Command ${command.groupID}:${command.memberName}
+			${enabled ? 'enabled' : 'disabled'}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	})
+	.on('groupStatusChange', (guild, group, enabled) => {
+		console.log(oneLine`
+			Group ${group.id}
+			${enabled ? 'enabled' : 'disabled'}
+			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
+		`);
+	});
 
-  try {
-    let commandFile = require(`./commands/${cmd}.js`); // This will assign that filename to commandFile
-    commandFile.run(Discord, bot, message, args, func); // This will add the functions, from the functions.js file into each commandFile.
-  } catch(e) { // If an error occurs, this will run.
-    console.log(e.message); // This logs the error message
-  } finally { // This will run after the first two clear up
-    console.log(`${message.author.username} ran the command: ${cmd}`);
-  }
-});
+bot.setProvider(
+	sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new commando.SQLiteProvider(db))
+).catch(console.error);
 
-// Listener Event: Runs whenever the bot sends a ready event (when it first starts for example)
-bot.on('ready', () => {
-    // We can post into the console that the bot launched.
-    console.log('Bot started.');
-    
-});
-
+bot.registry
+  .registerGroups([
+    ['pictures', 'Picture commands'],
+		['util', 'Utility Commands'],
+		['minecraft', 'Minecraft Commands']
+	])
+	.registerDefaultTypes()
+  .registerCommandsIn(path.join(__dirname, 'commands'));
 
 bot.login(require('./auth.json').token);
 

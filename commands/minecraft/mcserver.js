@@ -15,7 +15,7 @@ class MinecraftServerCommand extends commando.Command {
   async run(message, args) {
     message.channel.send({embed: {
       color: parseInt(globals.messageColor),
-      title: "ogcahchat.aternos.me"
+      title: "bugbus.aternos.me"
     }});
   }
 }

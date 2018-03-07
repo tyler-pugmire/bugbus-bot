@@ -7,7 +7,7 @@ class InviteCommand extends commando.Command {
     super(client, {
       name: 'invite',
       group: 'util',
-      memberName: 'inbite',
+      memberName: 'invite',
       description: 'Gets an invite link for the discord.'
     });
   }

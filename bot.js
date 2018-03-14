@@ -8,6 +8,7 @@ const sqlite = require('sqlite');
 const request = require('request');
 const oneLine = require('common-tags').oneLine;
 
+
 //const func = require('./functions.js'); // If this returns an error for you (or you might be on ubuntu/linux), try '../functions.js'
 //console.log(func);
 
@@ -60,10 +61,31 @@ bot.registry
   .registerGroups([
     ['pictures', 'Picture commands'],
 		['util', 'Utility Commands'],
-		['minecraft', 'Minecraft Commands']
+		['minecraft', 'Minecraft Commands'],
+		['yugioh', 'Yu-Gi-Oh Commands']
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 bot.login(process.env.TOKEN);
+
+//const StreamNotification = require('./stream_notification.js');
+//bot.client.streamNotification = new StreamNotification();
+//var ms = require('./minestat');
+//function checkMCServer() {
+//	ms.init('ogcahchat.aternos.me', 25565, function(result) {
+//  	console.log("Minecraft server status of " + ms.address + " on port " + ms.port + ":");
+//  	if(ms.online) {
+//  	  console.log("Server is online running version " + ms.version + " with " + ms.current_players + " out of " + ms.max_players + " players.");
+//  	  console.log("Message of the day: " + ms.motd);
+//  	}
+//  	else {
+//  	  console.log("Server is offline!");
+//  	}
+//	});
+//}
+
+
+//SetInterval(checkTwitchStream, 60000);
+//setInterval(checkMCServer, 60000);
 

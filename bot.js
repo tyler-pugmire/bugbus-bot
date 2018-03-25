@@ -62,7 +62,8 @@ bot.registry
     ['pictures', 'Picture commands'],
 		['util', 'Utility Commands'],
 		['minecraft', 'Minecraft Commands'],
-		['yugioh', 'Yu-Gi-Oh Commands']
+		['yugioh', 'Yu-Gi-Oh Commands'],
+		['puyo-puyo', 'Puyo-Puyo commands']
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));

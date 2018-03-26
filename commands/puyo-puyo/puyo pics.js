@@ -13,8 +13,13 @@ class PuyoCommand extends commando.Command {
   }
 
   async run(message, args) {
-      var WhichPic = Math.floor(Math.random()*27);
+      var WhichPic = Math.floor(Math.random()*31);
       //remember that ==0 is a thing
+      //if (message.author.roles.has() ) {
+        
+      //} else {}
+        
+      
       if (WhichPic == 0) {
           message.channel.send({embed: {
               color : parseInt(globals.messageColor),
@@ -233,6 +238,31 @@ class PuyoCommand extends commando.Command {
           title: ('This was a mistake')
       }});
   }
+      if (WhichPic == 28) {
+        message.channel.send({embed: {
+            color : parseInt(globals.messageColor),
+            image: {
+              url: "https://cdn.discordapp.com/attachments/426999734008283136/427637575386267650/2355960-schezo_wegey.png"
+            } 
+          }});
+      }
+      if (WhichPic == 29) {
+        message.channel.send({embed: {
+            color : parseInt(globals.messageColor),
+            image: {
+              url: "https://cdn.discordapp.com/attachments/426999734008283136/427637575885258762/DJKvZISVoAIKslW.png"
+            } 
+          }});
+      }
+      if (WhichPic == 30) {
+        message.channel.send({embed: {
+            color : parseInt(globals.messageColor),
+            image: {
+              url: "https://cdn.discordapp.com/attachments/426999734008283136/427639537330814976/img304005_5.png"
+            } 
+          }});
+      }
+
       }
 
   }

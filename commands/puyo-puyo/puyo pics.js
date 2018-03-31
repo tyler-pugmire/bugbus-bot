@@ -24,7 +24,7 @@ class PuyoCommand extends commando.Command {
       if (WhichPic >= pictures.length) {
         message.channel.send({embed: {
           color: parseInt(globals.messageColor),
-          title: ("$40 for tetris")
+          title: text[WhichPic - pictures.length]
         }});
       } else {
         message.channel.send({embed: {

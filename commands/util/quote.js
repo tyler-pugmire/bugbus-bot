@@ -12,19 +12,32 @@ class QuoteCommand extends commando.Command {
       memberName: 'quote',
       description: 'picks a quote to display',
       args: [
+        {
+            key: 'quote',
+            prompt: 'which quote you want',
+            type: 'integer',
+            default:-1,
+            infinite : false,
+            validate: quote => {
+                if (quote <= quotes.length) return true;
+                return "We don't have that many quotes";
+                
+            }
+          },
           {
-              key: 'quote',
-              prompt:'which quote you want',
-              type:'integer',
-              default : -1,
-              validate: quote => {
-                if (quote  <= quotes.length) return true;
-                return "We don't have that many quotes"; 
-            } 
+            key: 'anon',
+            prompt: 'shhhh',
+            type: 'string',
+            default: ""
           }
-      ]
-    });
-}
+        ]
+      });
+    }
+
+
+      
+
+
 async run(message, args){
     console.log (args.quote);
     if(args.quote  <= 0) {
@@ -35,6 +48,11 @@ async run(message, args){
             color: parseInt(globals.messageColor),
             title: quotes[args.quote - 1]
         }});
+        if (args.anon== 'anon'){
+            message.delete();
+
+        }
+
     }
       }
     

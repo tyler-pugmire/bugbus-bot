@@ -29,7 +29,6 @@ class YugiohCommand extends commando.Command {
     function (error, response, body) {
       if (!error && response.statusCode == 200) {
         cardList = body.cards;
-        console.log(cardList);
       } else {
         console.log("There was an error : " + response.statusCode);
         console.log(error);
@@ -49,7 +48,6 @@ class YugiohCommand extends commando.Command {
     },
     function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        console.log(body);
         message.channel.send({embed: {
           color: parseInt(globals.successColor),
           title: body.card.name,

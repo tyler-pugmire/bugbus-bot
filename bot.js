@@ -21,16 +21,6 @@ bot.on('error', console.error)
   .on('debug', console.log)
   .on('ready', () => {
 		console.log(`Bot ready; logged in as ${bot.user.username}#${bot.user.discriminator} (${bot.user.id})`);
-		let curColors = bot.guilds.get("414626170441564170").roles.filter(role => role.name.startsWith("$")).map(c => c.name.slice(1));
-		let colorDiff = colors.filter(x => !curColors.includes(x.name));
-		console.log(colorDiff);
-		for(var i = 0; i < colorDiff.length; ++i) {
-			bot.guilds.get("414626170441564170").createRole({
-				name: `$${colorDiff[i].name}`,
-				color: colorDiff[i].value,
-				permissions: []
-		 });
-		}
   })
   .on('disconnect', () => { console.warn('Disconnected!'); })
   .on('reconnecting', () => { console.warn('Reconnecting...'); })

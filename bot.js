@@ -63,30 +63,15 @@ bot.registry
 		['util', 'Utility Commands'],
 		['minecraft', 'Minecraft Commands'],
 		['yugioh', 'Yu-Gi-Oh Commands'],
-		['puyo-puyo', 'Puyo-Puyo commands']
+		['puyo-puyo', 'Puyo-Puyo commands'],
+		['stream', 'Stream Commands']
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 bot.login(process.env.TOKEN);
 
-//const StreamNotification = require('./stream_notification.js');
-//bot.client.streamNotification = new StreamNotification();
-//var ms = require('./minestat');
-//function checkMCServer() {
-//	ms.init('ogcahchat.aternos.me', 25565, function(result) {
-//  	console.log("Minecraft server status of " + ms.address + " on port " + ms.port + ":");
-//  	if(ms.online) {
-//  	  console.log("Server is online running version " + ms.version + " with " + ms.current_players + " out of " + ms.max_players + " players.");
-//  	  console.log("Message of the day: " + ms.motd);
-//  	}
-//  	else {
-//  	  console.log("Server is offline!");
-//  	}
-//	});
-//}
-
-
-//SetInterval(checkTwitchStream, 60000);
-//setInterval(checkMCServer, 60000);
+const StreamNotification = require('./stream_notification.js');
+var streamNotify = new StreamNotification(bot);
+setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);
 

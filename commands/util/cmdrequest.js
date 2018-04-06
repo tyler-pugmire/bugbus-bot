@@ -36,7 +36,7 @@ class CommandRequestCommand extends commando.Command {
       return;
     }
     
-    var data = `name=${args.name}&desc=${args.description}&due=null&token=4acca553cbf025dfb4a053563c46bc5111cb175f45cc6f81ba5d78232ff98b88&key=fa9e3e9361ea8fec8b0c97d118ad3819&idList=5aaf4d054b9c993c1f3ed14f`;
+    var data = `name=${args.name}&desc=${args.description}&due=null&token=${process.env.TRELLO_TOKEN}`;
     request.post({
       url: 'https://api.trello.com/1/cards?' + data,
       followAllRedirects: true,

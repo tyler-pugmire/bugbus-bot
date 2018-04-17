@@ -1,0 +1,22 @@
+{
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "mainDB",
+    "config": {
+      "host": "",
+      "port": "",
+      "dialect": "sqlite",
+      "storage": ""
+    }
+  },
+  "production": {
+    "username": null,
+    "password": null,
+    "database": "mainDB",
+    "config": {
+      "host": "update me",
+      "dialect": "update me"
+    }
+  }
+}

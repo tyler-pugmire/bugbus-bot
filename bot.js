@@ -10,12 +10,6 @@ const oneLine = require('common-tags').oneLine;
 const fs = require('fs');
 const colors = JSON.parse(fs.readFileSync('./storage/colors.json', 'utf8')).Colors;
 
-
-//const func = require('./functions.js'); // If this returns an error for you (or you might be on ubuntu/linux), try '../functions.js'
-//console.log(func);
-
-// Global Settings
-
 bot.on('error', console.error)
   .on('warn', console.warn)
   .on('debug', console.log)
@@ -64,6 +58,20 @@ bot.on('error', console.error)
 				permissions: []
 		 });
 		}
+	})
+	.on('guildMemberAdd', (member) => {
+		if(member.id == 310968544005324801) { //chen has joined the server
+			let worst_pleb = member.guild.roles.find("name", "Worst Pleb");
+			if(worst_pleb != null) {
+				member.addRole(worst_pleb);
+			}
+		}
+		else {
+			let pleb = member.guild.roles.find("name", "pleb");
+			let mini_mod = member.guild.roles.find("name", "mini mod");
+			var flip = Math.floor(Math.random()*2) + 1;
+			member.addRole(flip == 1 ? pleb : mini_mod);
+		}
 	});
 
 bot.setProvider(
@@ -78,14 +86,14 @@ bot.registry
 		['yugioh', 'Yu-Gi-Oh Commands'],
 		['puyo-puyo', 'Puyo-Puyo commands'],
 		['stream', 'Stream Commands'],
-		['pokemon', 'Pokemon Commands']
+		['media', 'Media Commands']
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 bot.login(process.env.TOKEN);
 
-const StreamNotification = require('./stream_notification.js');
+const StreamNotification = require('./structures/stream_notification.js');
 var streamNotify = new StreamNotification(bot);
 setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);
 

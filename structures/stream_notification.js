@@ -2,6 +2,7 @@ const request = require('request');
 const RichEmbed = require('discord.js').RichEmbed;
 const fs = require('fs');
 const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
+const db = JSON.parse(fs.readFileSync('./storage/streams.json', 'utf8')).mainDB;
 
 class StreamNotification {
   constructor(client) {
@@ -51,7 +52,6 @@ class StreamNotification {
       for(var key in this.streamers) {
         this.streamers[key].prevonline = this.streamers[key].online;
       }
-      this.client.provider.set(this.guild, "streamers", this.streamers);
     } else {
       console.log(error);
     }
@@ -61,81 +61,35 @@ class StreamNotification {
     var guilds = this.client.guilds.array();
     for(var i = 0; i < guilds.length; ++i) {
       this.guild = guilds[i].id;
-      var channelID = this.client.provider.get(this.guild, "stream_channel", 0);
-      this.channel = guilds[i].channels.get(channelID);
-      this.streamers = this.client.provider.get(this.guild, "streamers", null)
-      if(this.streamers != null) {
-        let keys = Object.keys(this.streamers);
-        console.log(keys.toString());
-        request.get({
-          url: `https://api.twitch.tv/kraken/streams?limit=${keys.length}&channel=${keys.toString()}`,
-          headers: {
-            'Client-ID': process.env.TWITCH_CLIENT_ID
-          },
-          followAllRedirects: true,
-          json: true
-        }, this.handleStreams.bind(this));
+      if(!db.hasOwnProperty(guilds[i].id)) {
+        console.log("guild not found");
+        continue;
       }
+      var guilddb = db[guilds[i].id];
+      if(!guilddb.hasOwnProperty("stream_channel")) {
+        console.log("no stream channel");
+        continue;
+      }
+      var channelID = guilddb["stream_channel"];
+      this.channel = guilds[i].channels.get(channelID);
+      console.log(this.channel);
+      if(!guilddb.hasOwnProperty("streamers")) {
+        console.log("no streams");
+        return;
+      }
+      this.streamers = guilddb["streamers"];
+      let keys = Object.keys(this.streamers);
+      console.log(keys.toString());
+      request.get({
+        url: `https://api.twitch.tv/kraken/streams?limit=${keys.length}&channel=${keys.toString()}`,
+        headers: {
+          'Client-ID': process.env.TWITCH_CLIENT_ID
+        },
+        followAllRedirects: true,
+        json: true
+      }, this.handleStreams.bind(this));
     }
   }
 }
 
 module.exports = StreamNotification;
-
-//function streamStatus(channel, stream) {
-//  request.get({
-//		url: 'https://api.twitch.tv/kraken/streams?limit=25&channel=' + channel,
-//		headers: {
-//      'Client-ID': process.env.TWITCH_CLIENT_ID
-//    },
-//		followAllRedirects: true,
-//		json: true
-//	},
-//	function(error, response, body) {
-//		if (!error && response.statusCode == 200) {
-//      console.log(body);
-//      if(body.streams.length == 0) {
-//        stream.online = false;
-//      }
-//      for(var i = 0; i < body.streams.length; ++i) {
-//        if(body.streams[i].channel == null) {
-//          stream.online = false;
-//        }
-//        else {
-//          console.log(body.streams[i].channel);
-//          stream.online = true;
-//        }
-//      }
-//		}
-//		else {
-//			stream.online = false;
-//		}
-//	});
-//}
-
-//for(var key in streamers) {
-//  console.log(key);
-//  const prevStatus = Boolean(streamers[key].online);
-//  console.log("Previous: " + prevStatus);
-//  streamStatus(key, streamers[key]);
-//  console.log("Current: " + streamers[key].online);
-//
-//  var guilds =this.client.guilds.array();
-//  for(var i = 0; i < guilds.length; ++i) {
-//    var channelID = this.client.provider.get(guilds[i].id, "stream_channel", 0);
-//    console.log(channelID);
-//    if(channelID != 0) {
-//      var channel = guilds[i].channels.get(channelID);
-//      if(prevStatus != streamers[key].online) {
-//        if(streamers[key].online) {
-//          console.log("online");
-//          channel.send("Stream Online");
-//        }
-//        else {
-//          console.log("offline");
-//          channel.send("Stream offline");
-//        }
-//      }
-//    }
-//  }
-//}

@@ -13,6 +13,7 @@ class SubsCommand extends commando.Command {
   }
   
   async run(message, args) {
+    return;
     var streamers = this.client.provider.get(message.guild.id, "streamers", null);
     if(streamers == null) {
       return;

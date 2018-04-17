@@ -1,0 +1,46 @@
+{
+  "mainDB" : {
+    "94975271282683904": {
+      "stream_channel" : "415360564664074241",
+      "streamers" : {
+        "AlexOgloza" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0riginalnamevgc" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0mellowgg" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "bigmgaming" : {
+          "online" : false,
+          "prevonline" : false
+        }
+      }
+    },
+    "414626170441564170": { 
+      "stream_channel" : "431671630687764480",
+      "streamers" : {
+        "AlexOgloza" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0riginalnamevgc" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0mellowgg" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "bigmgaming" : {
+          "online" : false,
+          "prevonline" : false
+        }
+      }
+    }
+  }
+}

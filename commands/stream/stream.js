@@ -18,6 +18,7 @@ class StreamCommand extends commando.Command {
   }
   
   async run(message, args) {
+    return;
     this.client.provider.set(message.guild.id, "stream_channel", message.channel.id);
     console.log(this.client.provider);
   }

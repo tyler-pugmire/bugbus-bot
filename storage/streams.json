@@ -18,6 +18,10 @@
         "bigmgaming" : {
           "online" : false,
           "prevonline" : false
+        },
+        "pexixi" : {
+          "online" : false,
+          "prevonline" : false
         }
       }
     },
@@ -37,6 +41,10 @@
           "prevonline" : false
         },
         "bigmgaming" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "pexixi" : {
           "online" : false,
           "prevonline" : false
         }

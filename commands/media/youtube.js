@@ -2,7 +2,7 @@ const commando = require('discord.js-commando');
 const fs = require('fs');
 const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 const request = require('request');
-const YouTube = require('simple-youtube-api');
+const youtube = require('../../structures/youtube')
 
 
 class YoutubeCommand extends commando.Command {
@@ -21,14 +21,12 @@ class YoutubeCommand extends commando.Command {
           }
       ]
     });
-
-    this.youtube = new YouTube(process.env.GOOGLE_API);
   }
 
   async run(message, args) {
     const search = args.search.join(" ");
     console.log(search);
-    const videos = await this.youtube.searchVideos(search, 1).catch(() => message.channel.send({embed: {
+    const videos = await youtube.searchVideos(search, 1).catch(() => message.channel.send({embed: {
       color: parseInt(globals.errorColor),
       description: `${message.author}, there were no search results.`
     }}));

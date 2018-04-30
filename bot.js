@@ -86,7 +86,8 @@ bot.registry
 		['yugioh', 'Yu-Gi-Oh Commands'],
 		['puyo-puyo', 'Puyo-Puyo commands'],
 		['stream', 'Stream Commands'],
-		['media', 'Media Commands']
+		['media', 'Media Commands'],
+		['music', 'Music Commands']
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));

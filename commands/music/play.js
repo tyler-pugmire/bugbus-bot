@@ -208,8 +208,8 @@ class PlayCommand extends commando.Command {
         return `👎 ${msg.author} song is already in queue`;
       }
       const maxSongs = 30;
-      if(queue.songs.reduce((prev, song) => prev + song.member.id === msg.author.id, 0) >= songMaxSongs) {
-        return `👎 ${msg.author} you already have ${songMaxSongs} songs in the queue. Don't hog all the airtime!`;
+      if(queue.songs.reduce((prev, song) => prev + song.member.id === msg.author.id, 0) >= maxSongs) {
+        return `👎 ${msg.author} you already have ${maxSongs} songs in the queue. Don't hog all the airtime!`;
       }
     }
     

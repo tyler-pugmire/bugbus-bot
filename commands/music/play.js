@@ -196,8 +196,8 @@ class PlayCommand extends commando.Command {
     const queue = this.queue.get(msg.guild.id);
 
     if(!this.client.isOwner(msg.author)) {
-      const sonMaxLength = 10;
-      if(video.durationSeconds > sonMaxLength * 60) {
+      const songMaxLength = 10;
+      if(video.durationSeconds > songMaxLength * 60) {
         return oneLine`
 					👎 ${msg.author} 
 					(${Song.timeString(video.durationSeconds)})
@@ -222,11 +222,6 @@ class PlayCommand extends commando.Command {
   play(guild, song) {
     
     const queue = this.queue.get(guild.id);
-    const vote = this.votes.get(guild.id);
-    if(vote) {
-      clearTimeout(vote);
-      this.votes.delete(guild.id);
-    }
 
     if(!song) {
 			queue.textChannel.send('We\'ve run out of songs! Better queue up some more tunes.');
@@ -259,12 +254,6 @@ class PlayCommand extends commando.Command {
       song.dispatcher = dispatcher;
       song.playing = true;
   }
-
-	get votes() {
-		if (!this._votes) this._votes = this.client.registry.resolveCommand('music:skip').votes;
-
-		return this._votes;
-	}
 }
 
 module.exports = PlayCommand;

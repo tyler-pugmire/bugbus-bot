@@ -18,7 +18,6 @@ class SkipCommand extends commando.Command {
 				Moderators can use the "force" parameter, which will immediately skip without a vote, no matter what.
 			`
     });
-    this.votes = new Map();
   }
 
   run(msg, args) {
@@ -45,84 +44,17 @@ class SkipCommand extends commando.Command {
 			return; // eslint-disable-line max-len
 		}
     
-    const threshold = Math.ceil((queue.voiceChannel.members.size - 1) / 3);
-		const force = threshold <= 1
-			|| queue.voiceChannel.members.size < threshold
-			|| (msg.member.hasPermission('MANAGE_MESSAGES')
-			&& args.toLowerCase() === 'force');
-		if (force) return msg.reply(this.skip(msg.guild, queue));
-
-		const vote = this.votes.get(msg.guild.id);
-		if (vote && vote.count >= 1) {
-			if (vote.users.some(user => user === msg.author.id)) {
-				msg.channel.send({embed: {
-					color: parseInt(globals.messageColor),
-					description: `${msg.author} 'you\'ve already voted to skip the song.`
-				}});
-				return;
-			}
-
-			vote.count++;
-			vote.users.push(msg.author.id);
-			if (vote.count >= threshold) {
-				msg.channel.send({embed: {
-					color: parseInt(globals.messageColor),
-					description: this.skip(msg.guild, queue)
-				}});
-				return;
-			}
-
-			const time = this.setTimeout(vote);
-			const remaining = threshold - vote.count;
-
-			return msg.say(oneLine`
-				${vote.count} vote${vote.count > 1 ? 's' : ''} received so far,
-				${remaining} more ${remaining > 1 ? 'are' : 'is'} needed to skip.
-				Five more seconds on the clock! The vote will end in ${time} seconds.
-			`);
-		} else {
-			const newVote = {
-				count: 1,
-				users: [msg.author.id],
-				queue,
-				guild: msg.guild.id,
-				start: Date.now(),
-				timeout: null
-			};
-
-			const time = this.setTimeout(newVote);
-			this.votes.set(msg.guild.id, newVote);
-			const remaining = threshold - 1;
-
-			return msg.say(oneLine`
-				Starting a voteskip.
-				${remaining} more vote${remaining > 1 ? 's are' : ' is'} required for the song to be skipped.
-				The vote will end in ${time} seconds.
-			`);
-		}
+		msg.channel.send({embed: {
+			color: parseInt(globals.messageColor),
+			description: this.skip(msg.guild, queue)
+		}});
   }
 
   skip(guild, queue) {
-		if (this.votes.has(guild.id)) {
-			clearTimeout(this.votes.get(guild.id).timeout);
-			this.votes.delete(guild.id);
-		}
-
 		const song = queue.songs[0];
 		song.dispatcher.end();
 
 		return `Skipped: **${song}**`;
-	}
-
-	setTimeout(vote) {
-		const time = vote.start + 15000 - Date.now() + ((vote.count - 1) * 5000);
-		clearTimeout(vote.timeout);
-		vote.timeout = setTimeout(() => {
-			this.votes.delete(vote.guild);
-			vote.queue.textChannel.send('The vote to skip the current song has ended. Get outta here, party poopers.');
-		}, time);
-
-		return Math.round(time / 1000);
 	}
 
 	get queue() {

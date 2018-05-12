@@ -36,7 +36,7 @@ class StreamNotification {
             embed.setDescription(`@here ${stream.channel.display_name} has gone live!`);
             embed.setThumbnail(stream.channel.logo);
             embed.addField("Currently playing", stream.channel.game);
-            embed.setImage(stream.preview.medium);
+            embed.setImage(stream.preview.large);
             this.channel.send(embed);
             let subs = this.streamers[channel].subs;
             if(subs != null) {

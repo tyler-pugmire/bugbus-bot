@@ -6,7 +6,7 @@ const MafiaGame = require('./mafia.js')
 class CommandoClient extends Client {
 	constructor(options) {
 		super(options);
-		this.database = Database.db;
+		//this.database = Database.db;
 		this.mafia = new MafiaGame();
 		//Database.start();
 	}

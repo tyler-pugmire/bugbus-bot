@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando');
-const bot = new commando.Client({
+const bugbusClient = require('./structures/bugbusclient.js')
+const bot = new bugbusClient({
   owner: '94974307192541184',
 	commandPrefix: '!'
 });
@@ -9,6 +10,7 @@ const request = require('request');
 const oneLine = require('common-tags').oneLine;
 const fs = require('fs');
 const colors = JSON.parse(fs.readFileSync('./storage/colors.json', 'utf8')).Colors;
+const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
 
 bot.on('error', console.error)
   .on('warn', console.warn)
@@ -60,10 +62,19 @@ bot.on('error', console.error)
 		}
 	})
 	.on('guildMemberAdd', (member) => {
+
 		if(member.id == 310968544005324801) { //chen has joined the server
 			let worst_pleb = member.guild.roles.find("name", "Worst Pleb");
 			if(worst_pleb != null) {
 				member.addRole(worst_pleb);
+			}
+		}
+		else if(member.guild.id == "482425662251073537") {
+			let mafia = member.guild.roles.find("name", "Mafia");
+			let night = member.guild.roles.find("name", "Night");
+			if(mafia != null && night != null) {
+				member.addRole(mafia);
+				member.addRole(night);
 			}
 		}
 		else {
@@ -83,11 +94,11 @@ bot.registry
     ['pictures', 'Picture commands'],
 		['util', 'Utility Commands'],
 		['minecraft', 'Minecraft Commands'],
-		['yugioh', 'Yu-Gi-Oh Commands'],
+		//['yugioh', 'Yu-Gi-Oh Commands'],
 		['puyo-puyo', 'Puyo-Puyo commands'],
 		['stream', 'Stream Commands'],
 		['media', 'Media Commands'],
-		['music', 'Music Commands']
+		['music', 'Music Commands'],
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));

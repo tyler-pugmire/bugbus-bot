@@ -1,12 +1,14 @@
 const { Client } = require('discord.js-commando');
+const MafiaGame = require('./mafia.js')
 
-const Database = require('./postgresql');
+//const Database = require('./postgresql');
 
 class CommandoClient extends Client {
 	constructor(options) {
 		super(options);
 		this.database = Database.db;
-		Database.start();
+		this.mafia = new MafiaGame();
+		//Database.start();
 	}
 }
 

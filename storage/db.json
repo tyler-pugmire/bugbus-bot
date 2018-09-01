@@ -1,0 +1,70 @@
+{
+  "mainDB" : {
+    "94975271282683904": {
+      "default_roles": ["mini_mod", "pleb"],
+      "stream_channel" : "415360564664074241",
+      "streamers" : {
+        "AlexOgloza" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0riginalnamevgc" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "2mellow" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "BigM_tv" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "pexixi" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "clabash97" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "TyleRex" : {
+          "online" : false,
+          "prevonline" : false
+        }
+      }
+    },
+    "414626170441564170": { 
+      "stream_channel" : "431671630687764480",
+      "streamers" : {
+        "AlexOgloza" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "0riginalnamevgc" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "2mellow" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "BigM_tv" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "pexixi" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "clabash97" : {
+          "online" : false,
+          "prevonline" : false
+        }
+      }
+    },
+    "482425662251073537": {
+      "default_roles": ["Mafia"]
+    }
+  }
+}

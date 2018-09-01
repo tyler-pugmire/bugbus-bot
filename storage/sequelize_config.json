@@ -16,7 +16,7 @@
     "database": "mainDB",
     "config": {
       "host": "update me",
-      "dialect": "update me"
+      "dialect": "sqlite"
     }
   }
 }

@@ -85,9 +85,9 @@ bot.on('error', console.error)
 		}
 	});
 
-bot.setProvider(
-	sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new commando.SQLiteProvider(db))
-).catch(console.error);
+//bot.setProvider(
+//	sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new commando.SQLiteProvider(db))
+//).catch(console.error);
 
 bot.registry
   .registerGroups([

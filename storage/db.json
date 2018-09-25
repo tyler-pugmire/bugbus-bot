@@ -31,6 +31,10 @@
         "TyleRex" : {
           "online" : false,
           "prevonline" : false
+        },
+        "TeamDrizzleTwitch" : {
+          "online" : false,
+          "prevonline" : false
         }
       }
     },

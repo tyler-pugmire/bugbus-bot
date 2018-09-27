@@ -39,6 +39,7 @@
       }
     },
     "414626170441564170": { 
+      "default_roles": ["mini_mod", "pleb"],
       "stream_channel" : "431671630687764480",
       "streamers" : {
         "AlexOgloza" : {
@@ -62,6 +63,10 @@
           "prevonline" : false
         },
         "clabash97" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "TeamDrizzleTwitch" : {
           "online" : false,
           "prevonline" : false
         }

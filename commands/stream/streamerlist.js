@@ -5,6 +5,7 @@ const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 const RichEmbed = require('discord.js').RichEmbed;
 const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
 
+
 class StreamerListCommand extends commando.Command {
   constructor(client) {
     super(client, {

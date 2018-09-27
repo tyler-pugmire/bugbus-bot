@@ -2,7 +2,7 @@ const request = require('request');
 const RichEmbed = require('discord.js').RichEmbed;
 const fs = require('fs');
 const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
-const db = JSON.parse(fs.readFileSync('./storage/streams.json', 'utf8')).mainDB;
+const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
 
 class StreamNotification {
   constructor(client) {

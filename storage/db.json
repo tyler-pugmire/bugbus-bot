@@ -35,6 +35,10 @@
         "TeamDrizzleTwitch" : {
           "online" : false,
           "prevonline" : false
+        },
+        "Blazekicked" : {
+          "online" : false,
+          "prevonline" : false
         }
       }
     },
@@ -67,6 +71,10 @@
           "prevonline" : false
         },
         "TeamDrizzleTwitch" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "Blazekicked" : {
           "online" : false,
           "prevonline" : false
         }

@@ -39,6 +39,10 @@
         "Blazekicked" : {
           "online" : false,
           "prevonline" : false
+        },
+        "greenfiregrace" : {
+          "online" : false,
+          "prevonline" : false
         }
       }
     },
@@ -75,6 +79,10 @@
           "prevonline" : false
         },
         "Blazekicked" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "greenfiregrace" : {
           "online" : false,
           "prevonline" : false
         }

@@ -19,7 +19,8 @@ class FabuizelCommand extends commando.Command {
       color : parseInt(globals.messageColor),
       image: {
         url: "https://cdn.discordapp.com/attachments/420043635162087446/514375241397567509/fabuizel.png"
-      } 
+      },
+      title:"You have been visited by the Fabuizel!  Post a reaction within 30 seconds and get 1 year of no VGC hax." 
     }});
   }
 }

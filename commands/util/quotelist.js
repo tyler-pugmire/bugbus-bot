@@ -17,11 +17,17 @@ class QuoteListCommand extends commando.Command {
     });
 }
 async run(message, args){
+    console.log(message.guild.emojis)
     var embed = new RichEmbed ();
     embed.setTitle("These are the quotes");
     for(var i = 0; i < quotes.length; ++i ) 
     {
-    embed.addField(i +1,quotes[i] );
+      embed.addField(i + 1, quotes[i] );
+      if(i != 0 && i % 24 == 0) {
+        message.author.sendMessage(embed);
+        embed = new RichEmbed();
+        embed.setTitle("Quotes Continued...")
+      }
     }
     message.author.sendMessage(embed);
 }

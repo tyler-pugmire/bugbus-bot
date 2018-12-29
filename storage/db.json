@@ -43,6 +43,10 @@
         "greenfiregrace" : {
           "online" : false,
           "prevonline" : false
+        },
+        "usx_tv" : {
+          "online" : false,
+          "prevonline" : false
         }
       }
     },
@@ -83,6 +87,10 @@
           "prevonline" : false
         },
         "greenfiregrace" : {
+          "online" : false,
+          "prevonline" : false
+        },
+        "usx_tv" : {
           "online" : false,
           "prevonline" : false
         }

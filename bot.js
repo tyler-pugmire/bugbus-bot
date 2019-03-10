@@ -91,8 +91,8 @@ bot.on('error', console.error)
 		}
 	})*/
 	.on('grookeyBad', (message)=>{
-		if (message.content.includes('grookey')) {
-			message.delete()
+		if (message.content.startsWith('grookey')) {
+			message.delete();
 		}
 	});
 

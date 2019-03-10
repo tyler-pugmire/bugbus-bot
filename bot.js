@@ -83,6 +83,17 @@ bot.on('error', console.error)
 			var flip = Math.floor(Math.random()*2) + 1;
 			member.addRole(flip == 1 ? pleb : mini_mod);
 		}
+	})
+	/*.on('jessBirthday', ()=>{
+		var currentDate = Date.now()
+		if (currentDate == 1555736400000) {
+			
+		}
+	})*/
+	.on('grookeyBad', (message)=>{
+		if (message.content.includes('grookey')) {
+			message.channel.send('no')
+		}
 	});
 
 //bot.setProvider(

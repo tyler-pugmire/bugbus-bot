@@ -92,7 +92,7 @@ bot.on('error', console.error)
 	})*/
 	.on('grookeyBad', (message)=>{
 		if (message.content.includes('grookey')) {
-			message.reply('no')
+			message.delete()
 		}
 	});
 

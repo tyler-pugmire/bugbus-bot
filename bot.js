@@ -86,15 +86,17 @@ bot.on('error', console.error)
 	})
 	/*.on('jessBirthday', ()=>{
 		var currentDate = Date.now()
+		return currentDate
 		if (currentDate == 1555736400000) {
 			
 		}
-	})*/
+	})
 	.on('grookeyBad', (message)=>{
-		if (message.content.startsWith('grookey')) {
-			message.delete();
+		var grook = 'grookey'
+		if (message.content.includes(grook)) {
+			message.channel.send('no');
 		}
-	});
+	})*/;
 
 //bot.setProvider(
 //	sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new commando.SQLiteProvider(db))

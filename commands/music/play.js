@@ -37,7 +37,7 @@ class PlayCommand extends commando.Command {
     if(!queue) {
       voiceChannel = msg.member.voiceChannel;
       if(!voiceChannel) {
-        msg.channel.send({embed : {
+        return msg.channel.send({embed : {
           color: parseInt(globals.errorColor),
           description: "You must be in a voice channel to add songs."
         }});

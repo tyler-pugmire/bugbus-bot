@@ -84,11 +84,10 @@ bot.on('error', console.error)
 			member.addRole(flip == 1 ? pleb : mini_mod);
 		}
 	})
-	/*.on('jessBirthday', ()=>{
+	/*.on('jessBirthday', (client)=>{
 		var currentDate = Date.now()
-		return currentDate
 		if (currentDate == 1555736400000) {
-			
+			client.channels.get(414626170441564173).send(('Happy Birthday Jess!'))
 		}
 	})
 	.on('grookeyBad', (message)=>{

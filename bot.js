@@ -11,6 +11,7 @@ const oneLine = require('common-tags').oneLine;
 const fs = require('fs');
 const colors = JSON.parse(fs.readFileSync('./storage/colors.json', 'utf8')).Colors;
 const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
+const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 
 bot.on('error', console.error)
   .on('warn', console.warn)
@@ -83,7 +84,26 @@ bot.on('error', console.error)
 			var flip = Math.floor(Math.random()*2) + 1;
 			member.addRole(flip == 1 ? pleb : mini_mod);
 		}
+	})
+	.on('message',  message => {
+		var grook = 'grookey'
+		if (message.content.toLowerCase().includes(grook)) {
+			message.channel.send({embed: {
+				color : parseInt(globals.messageColor),
+				image: {
+					url: "https://cdn.discordapp.com/attachments/524387709452550145/552731373937623041/image0.jpg"
+				} 
+			}});
+		}
 	});
+	/*.on('jessBirthday', ()=>{
+		var currentDate = Date.now()
+		return currentDate
+		if (currentDate == 1555736400000) {
+			
+		}
+	})*/
+
 
 //bot.setProvider(
 //	sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => new commando.SQLiteProvider(db))

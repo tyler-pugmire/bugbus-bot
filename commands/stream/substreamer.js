@@ -1,6 +1,7 @@
 const commando = require('discord.js-commando');
 const fs = require('fs');
 const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
+const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
 
 class SubStreamerCommand extends commando.Command {
   constructor(client) {
@@ -20,15 +21,16 @@ class SubStreamerCommand extends commando.Command {
   }
   
   async run(message, args) {
-    return;
-    var streamers = this.client.provider.get(message.guild.id, "streamers", null);
-    if(streamers == null) {
-      message.channel.send({embed: {
-        color: parseInt(globals.errorColor),
-        title: "No streamers have been followed on this server."
-      }})
+    if(!db.hasOwnProperty(message.guild.id)) {
+      console.log("guild not found");
       return;
     }
+    var guilddb = db[message.guild.id];
+    if(!guilddb.hasOwnProperty("streamers")) {
+      console.log("no streams");
+      return;
+    }
+    var streamers = guilddb["streamers"];
     if(streamers[args.channel] == null) {
       message.channel.send({embed: {
         color: parseInt(globals.errorColor),
@@ -36,14 +38,9 @@ class SubStreamerCommand extends commando.Command {
       }})
       return;
     }
-    if(streamers[args.channel].subs == null) {
-       streamers[args.channel].subs = [];
-    }
-    streamers[args.channel].subs.push(message.author.id);
-    message.channel.send({embed: {
-      color: parseInt(globals.successColor),
-      title: "You are now subscribed to this streamer."
-    }});
+    
+    
+
   }
 }
 

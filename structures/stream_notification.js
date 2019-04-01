@@ -24,8 +24,32 @@ class StreamNotification {
           return o.channel && o.channel.name == channel.toLowerCase();
         });
         if(stream == null) {
-          this.streamers[channel].online = false;
-        } else {
+          this.streamers[channel].online = true;
+          console.log(channel)
+          if(channel=='AlexOgloza' && this.channel != null && this.streamers[channel].prevonline != this.streamers[channel].online) {
+              this.streamers[channel].online=true;
+              let embed = new RichEmbed();
+              embed.setColor(parseInt(globals.messageColor));
+              embed.setTitle("Back for More | 2014 US National Pokemon CHAMP");
+              embed.setURL("https://twitch.tv/alexogloza");
+              embed.setAuthor('AlexOgloza', 'https://static-cdn.jtvnw.net/jtv_user_pictures/alexogloza-profile_image-c28420201ccad60d-70x70.jpeg', 'https://twitch.tv/alexogloza');
+              embed.setDescription(`@here AlexOgloza has gone live!`);
+              embed.setThumbnail('https://static-cdn.jtvnw.net/jtv_user_pictures/alexogloza-profile_image-c28420201ccad60d-70x70.jpeg');
+              embed.addField("Currently playing", "Pokemon Ultra Sun/Ultra Moon");
+              embed.setImage("https://cdn.discordapp.com/attachments/420043635162087446/562410420887879684/Capture0.PNG");
+              this.channel.send(embed);
+              let subs = this.streamers[channel].subs;
+              if(subs != null) {
+                embed.setDescription(`AlexOgloza has gone live!`);
+                for(var j = 0; j < subs.length; ++j) {
+                  let g = this.client.guilds.find("id", this.guild);
+                  g.members.find('id', subs[j]).send(embed);
+                }
+              }
+            
+          }
+          }
+         else {
           this.streamers[channel].online = true;
           if(this.channel != null && this.streamers[channel].prevonline != this.streamers[channel].online) {
             let embed = new RichEmbed();

@@ -85,6 +85,8 @@ bot.on('error', console.error)
 			member.addRole(flip == 1 ? pleb : mini_mod);
 		}
 	})
+
+
 	.on('message',  message => {
 		var grook = 'grookey'
 		if (message.content.toLowerCase().includes(grook)) {
@@ -96,6 +98,7 @@ bot.on('error', console.error)
 			}});
 		}
 	})
+
 	/*.on('jessBirthday', ()=>{
 		var currentDate = Date.now()
 		while (currentDate < 1555736400000) {
@@ -105,6 +108,7 @@ bot.on('error', console.error)
 			client.channels.get(414626170441564173).send((''))
 	}
 	})*/;
+
 
 
 //bot.setProvider(

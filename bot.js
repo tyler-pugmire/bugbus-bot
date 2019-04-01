@@ -92,17 +92,19 @@ bot.on('error', console.error)
 				color : parseInt(globals.messageColor),
 				image: {
 					url: "https://cdn.discordapp.com/attachments/524387709452550145/552731373937623041/image0.jpg"
-				} 
+				} 	
 			}});
 		}
-	});
+	})
 	/*.on('jessBirthday', ()=>{
 		var currentDate = Date.now()
-		return currentDate
-		if (currentDate == 1555736400000) {
-			
+		while (currentDate < 1555736400000) {
+			currentDate = Date.now()
 		}
-	})*/
+		if(currentDate==1555736400000){
+			client.channels.get(414626170441564173).send((''))
+	}
+	})*/;
 
 
 //bot.setProvider(

@@ -25,8 +25,7 @@ class StreamNotification {
         });
         if(stream == null) {
           this.streamers[channel].online = true;
-          console.log(channel)
-          if(channel=='AlexOgloza' && this.channel != null && this.streamers[channel].prevonline != this.streamers[channel].online) {
+          /*if(channel=='AlexOgloza' && this.channel != null && this.streamers[channel].prevonline != this.streamers[channel].online) {
               this.streamers[channel].online=true;
               let embed = new RichEmbed();
               embed.setColor(parseInt(globals.messageColor));
@@ -47,7 +46,7 @@ class StreamNotification {
                 }
               }
             
-          }
+          }*/
           }
          else {
           this.streamers[channel].online = true;

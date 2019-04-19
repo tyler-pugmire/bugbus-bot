@@ -97,17 +97,7 @@ bot.on('error', console.error)
 				} 	
 			}});
 		}
-	})
-
-	/*.on('jessBirthday', ()=>{
-		var currentDate = Date.now()
-		while (currentDate < 1555736400000) {
-			currentDate = Date.now()
-		}
-		if(currentDate==1555736400000){
-			client.channels.get(414626170441564173).send((''))
-	}
-	})*/;
+	});
 
 
 

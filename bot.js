@@ -97,17 +97,7 @@ bot.on('error', console.error)
 				} 	
 			}});
 		}
-	})
-
-	/*.on('jessBirthday', ()=>{
-		var currentDate = Date.now()
-		while (currentDate < 1555736400000) {
-			currentDate = Date.now()
-		}
-		if(currentDate==1555736400000){
-			client.channels.get(414626170441564173).send((''))
-	}
-	})*/;
+	});
 
 
 
@@ -135,3 +125,23 @@ const StreamNotification = require('./structures/stream_notification.js');
 var streamNotify = new StreamNotification(bot);
 setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);
 
+var currentDate = new Date();
+var date = currentDate.getDate();
+var guild = this.client.guild[94975271282683904]
+var channel = guild.channels[415360564664074241]
+class Birthday {
+	constructor(client) {
+		this.client = client;
+	}
+	
+	checkBirthday(){
+	date=currentDate.getDate()
+	if (date==19) {
+	this.client.guild.channel.send({embed:{
+		color: parseInt(globals.messageColor),
+		title: "@94974307192541184 Happy Birthday Jess!",
+		url: 'https://docs.google.com/document/d/1mskamW3DFajLeGZb9pwakHc36mU662m3qpV-4WCUuhM/edit?usp=sharing'
+	}});	
+}}};
+var bdayNotify = new Birthday(bot);
+setInterval(bdayNotify.checkBirthday.bind(bdayNotify), 360);

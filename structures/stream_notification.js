@@ -69,14 +69,12 @@ class StreamNotification {
       }
       var channelID = guilddb["stream_channel"];
       this.channel = guilds[i].channels.get(channelID);
-      console.log(this.channel);
       if(!guilddb.hasOwnProperty("streamers")) {
         console.log("no streams");
         return;
       }
       this.streamers = guilddb["streamers"];
       let keys = Object.keys(this.streamers);
-      console.log(keys.toString());
       request.get({
         url: `https://api.twitch.tv/kraken/streams?limit=${keys.length}&channel=${keys.toString()}`,
         headers: {

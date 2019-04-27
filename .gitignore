@@ -3,3 +3,4 @@ auth.json
 node_modules/*
 dev.bat
 .env
+settings.sqlite

@@ -14,12 +14,9 @@ class StreamNotification {
 
   handleStreams(error, response, body) {
     if(!error && response.statusCode == 200) {
-      console.log(body);
       let channels = Object.keys(this.streamers);
-      console.log(channels);
       for (var i = 0; i < channels.length; ++i) {
         let channel = channels[i];
-        console.log(channel);
         let stream = body.streams.find(function(o) {
           return o.channel && o.channel.name == channel.toLowerCase();
         });

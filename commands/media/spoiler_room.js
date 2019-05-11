@@ -4,7 +4,6 @@ const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 const RichEmbed = require('discord.js').RichEmbed;
 
 function createChannel(message, name, overrides) {
-  let mod = message.guild.roles.filter(role => role.name.includes("mod"));
   message.channel.guild.createChannel(name, 'text', [{
     id: message.channel.guild.defaultRole.id,
     deny: overrides
@@ -81,6 +80,10 @@ class SpoilerCommand extends commando.Command {
         }
 
         let room = collected.first().content;
+        if(room < 1 || room > channels.length / 2) {
+          message.reply("Invalide room number");
+          return;
+        }
         message.reply(`You can now talk about spoilers in ${channels[(room - 1) * 2].name}`);
         channels[(room - 1) * 2].overwritePermissions(message.author, {
           "VIEW_CHANNEL" : true,

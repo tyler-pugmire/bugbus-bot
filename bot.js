@@ -125,37 +125,3 @@ const StreamNotification = require('./structures/stream_notification.js');
 var streamNotify = new StreamNotification(bot);
 setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);
 
-//var currentDate = new Date();
-//var date = currentDate.getDate();
-//
-//class Birthday {
-//	constructor(client) {
-//		this.client = client;
-//		this.messageSent = false;
-//	}
-//	
-//	async checkBirthday(){
-//	date = currentDate.getDate()
-//	var channel = this.client.channels.get("414626170441564173")
-//	if(channel == null) {
-//		return;
-//	}
-//	if (this.messageSent == false) {
-//		this.messageSent = true;
-//		channel.send({embed:{
-//		color: parseInt(globals.messageColor),
-//		title: "Happy Birthday Jess!",
-//		description: '<@371436326345506817>',
-//		fields : [
-//			{
-//				name : "Here's something we made for you!",
-//				value : 'https://docs.google.com/document/d/1mskamW3DFajLeGZb9pwakHc36mU662m3qpV-4WCUuhM/edit?usp=sharing'
-//			}
-//		],
-//		thumbnail: {
-//			url: "https://cdn.discordapp.com/attachments/415242023931740173/569004090420494356/bugbus_new_years.png"
-//		}
-//	}});	
-//}}};
-//var bdayNotify = new Birthday(bot);
-//setInterval(bdayNotify.checkBirthday.bind(bdayNotify), 360);

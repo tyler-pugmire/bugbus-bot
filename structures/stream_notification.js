@@ -10,39 +10,35 @@ class StreamNotification {
     this.guild = 0;
     this.channel = {};
     this.streamers = {};
+
+    this.userIds = [];
   }
 
   handleStreams(error, response, body) {
     if(!error && response.statusCode == 200) {
-      let channels = Object.keys(this.streamers);
-      for (var i = 0; i < channels.length; ++i) {
-        let channel = channels[i];
-        let stream = body.streams.find(function(o) {
-          return o.channel && o.channel.name == channel.toLowerCase();
-        });
-        if(stream == null) {
-          this.streamers[channel].online = false;
+      for(var i = 0; i < body.data.length; ++i) {
+        let stream = body.data[i]
+        if(stream.type == '') {
+          console.log("offline")
+          this.streamers[stream.user_name].online = false;
         } else {
-          this.streamers[channel].online = true;
-          if(this.channel != null && this.streamers[channel].prevonline != this.streamers[channel].online) {
+          console.log("onine")
+          this.streamers[stream.user_name].online = true;
+
+          if(this.channel != null && this.streamers[stream.user_name].prevonline != this.streamers[stream.user_name].online) {
+            let preview = stream.thumbnail_url.replace('{width}', '500')
+            preview = preview.replace('{height}', '300')
+
             let embed = new RichEmbed();
             embed.setColor(parseInt(globals.messageColor));
-            embed.setTitle(stream.channel.status);
-            embed.setURL(stream.channel.url);
-            embed.setAuthor(stream.channel.display_name, stream.channel.logo, stream.channel.url);
-            embed.setDescription(`@here ${stream.channel.display_name} has gone live!`);
-            embed.setThumbnail(stream.channel.logo);
-            embed.addField("Currently playing", stream.channel.game);
-            embed.setImage(stream.preview.large);
+            embed.setTitle(stream.title);
+            embed.setURL(`https://www.twitch.tv/${stream.user_name}`);
+            //embed.setAuthor(stream.user_name, stream.channel.logo, stream.channel.url);
+            embed.setDescription(`@here ${stream.user_name} has gone live!`);
+            //embed.setThumbnail(stream.channel.logo);
+            //embed.addField("Currently playing", stream.channel.game);
+            embed.setImage(preview);
             this.channel.send(embed);
-            let subs = this.streamers[channel].subs;
-            if(subs != null) {
-              embed.setDescription(`${stream.channel.display_name} has gone live!`);
-              for(var j = 0; j < subs.length; ++j) {
-                let g = this.client.guilds.find("id", this.guild);
-                g.members.find('id', subs[j]).send(embed);
-              }
-            }
           }
         }
       }
@@ -50,6 +46,31 @@ class StreamNotification {
         this.streamers[key].prevonline = this.streamers[key].online;
       }
     } else {
+      console.log(response)
+      console.log(error);
+    }
+  }
+
+  storeUserIDs(error, response, body) {
+    if(!error && response.statusCode == 200) {
+      let users = body.data;
+      this.userIds = [];
+      for(var i = 0; i < users.length; ++i) {
+        console.log(users[i])
+        this.userIds.push(users[i].id);
+        request.get({
+          url: `https://api.twitch.tv/helix/streams?user_id=${this.userIds.join('&user_id=')}`,
+          headers: {
+            'Client-ID': process.env.TWITCH_CLIENT_ID
+          },
+          followAllRedirects: true,
+          json: true
+        }, this.handleStreams.bind(this));
+      }
+      
+    }
+    else {
+      console.log(response)
       console.log(error);
     }
   }
@@ -76,13 +97,13 @@ class StreamNotification {
       this.streamers = guilddb["streamers"];
       let keys = Object.keys(this.streamers);
       request.get({
-        url: `https://api.twitch.tv/kraken/streams?limit=${keys.length}&channel=${keys.toString()}`,
+        url: `https://api.twitch.tv/helix/users?login=${keys.join('&login=')}`,
         headers: {
           'Client-ID': process.env.TWITCH_CLIENT_ID
         },
         followAllRedirects: true,
         json: true
-      }, this.handleStreams.bind(this));
+      }, this.storeUserIDs.bind(this));
     }
   }
 }

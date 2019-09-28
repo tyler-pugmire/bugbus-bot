@@ -16,13 +16,15 @@ class StreamNotification {
 
   handleStreams(error, response, body) {
     if(!error && response.statusCode == 200) {
+      console.log(body.data.length)
+      var users = [];
       for(var i = 0; i < body.data.length; ++i) {
         let stream = body.data[i]
+        console.log(stream)
         if(stream.type == '') {
-          console.log("offline")
           this.streamers[stream.user_name].online = false;
         } else {
-          console.log("onine")
+          users.push(stream.user_name);
           this.streamers[stream.user_name].online = true;
 
           if(this.channel != null && this.streamers[stream.user_name].prevonline != this.streamers[stream.user_name].online) {
@@ -43,6 +45,11 @@ class StreamNotification {
         }
       }
       for(var key in this.streamers) {
+        if(!users.includes(key)) {
+          this.streamers[key].online = false;
+        }
+      }
+      for(var key in this.streamers) {
         this.streamers[key].prevonline = this.streamers[key].online;
       }
     } else {
@@ -56,7 +63,6 @@ class StreamNotification {
       let users = body.data;
       this.userIds = [];
       for(var i = 0; i < users.length; ++i) {
-        console.log(users[i])
         this.userIds.push(users[i].id);
         request.get({
           url: `https://api.twitch.tv/helix/streams?user_id=${this.userIds.join('&user_id=')}`,

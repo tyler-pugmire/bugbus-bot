@@ -121,7 +121,6 @@ bot.registry
 
 bot.login(process.env.TOKEN);
 
-const StreamNotification = require('./structures/stream_notification.js');
-var streamNotify = new StreamNotification(bot);
-setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);
-
+//const StreamNotification = require('./structures/stream_notification.js');
+//var streamNotify = new StreamNotification(bot);
+//setInterval(streamNotify.run.bind(streamNotify), 30 * 1000);

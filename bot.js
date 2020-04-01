@@ -5,13 +5,14 @@ const bot = new bugbusClient({
 	commandPrefix: '!'
 });
 const path = require('path');
-const sqlite = require('sqlite');
-const request = require('request');
+//const sqlite = require('sqlite');
+//const request = require('request');
 const oneLine = require('common-tags').oneLine;
 const fs = require('fs');
 const colors = JSON.parse(fs.readFileSync('./storage/colors.json', 'utf8')).Colors;
-const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
+//const db = JSON.parse(fs.readFileSync('./storage/db.json', 'utf8')).mainDB;
 const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
+var {flipString} = require('./structures/april_fools_2020.js');
 
 bot.on('error', console.error)
   .on('warn', console.warn)
@@ -88,6 +89,7 @@ bot.on('error', console.error)
 
 
 	.on('message',  message => {
+		if(message.author.id === bot.user.id) return;
 		var grook = 'grookey'
 		if (message.content.toLowerCase().includes(grook)) {
 			message.channel.send({embed: {
@@ -96,6 +98,19 @@ bot.on('error', console.error)
 					url: "https://cdn.discordapp.com/attachments/524387709452550145/552731373937623041/image0.jpg"
 				} 	
 			}});
+		}
+		var enabled = require('./structures/april_fools_2020.js').enabled;
+		console.log(`${enabled}`)
+		if(enabled == true) {
+			message.channel.send({embed: {
+				color : parseInt(globals.messageColor),
+				author: {
+					name: `${message.author.username}`,
+					icon_url: message.author.avatarURL
+				}, 	
+				description: flipString(message.content.toLowerCase())
+			}});
+			message.delete();
 		}
 	});
 

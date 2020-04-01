@@ -12,9 +12,6 @@ class AprilFools2020Command extends commando.Command {
 
   async run(message, args) {
     require('./../../structures/april_fools_2020.js').enabled = !require('./../../structures/april_fools_2020.js').enabled;
-    if(enabled == true) {
-        
-    }
   }
 }
 module.exports = AprilFools2020Command;

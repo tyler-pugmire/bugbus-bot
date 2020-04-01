@@ -8,18 +8,19 @@ const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 class PuyoCommand extends commando.Command {
   constructor(client) {
     super(client, {
-      name: 'puyo',
+      name: 'tetris',
       group: 'puyo-puyo',
-      memberName: 'puyo',
+      memberName: 'tetris',
       description: 'randomly picks a puyo puyo pic posted by jess',
-      throttling: {
-        usages: 3,
-        duration: 1800
-     }
+      //throttling: {
+        //usages: 3,
+        //duration: 1800
+     //}
     });
   }
 
   async run(message, args) {
+      message.delete();
       var WhichPic = Math.floor(Math.random()*(pictures.length + text.length - 1));
       if (WhichPic >= pictures.length) {
         message.channel.send({embed: {

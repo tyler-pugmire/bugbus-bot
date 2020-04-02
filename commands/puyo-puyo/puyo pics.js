@@ -8,14 +8,14 @@ const globals = JSON.parse(fs.readFileSync('./storage/globals.json', 'utf8'));
 class PuyoCommand extends commando.Command {
   constructor(client) {
     super(client, {
-      name: 'tetris',
+      name: 'puyo',
       group: 'puyo-puyo',
-      memberName: 'tetris',
+      memberName: 'puyo',
       description: 'randomly picks a puyo puyo pic posted by jess',
-      //throttling: {
-        //usages: 3,
-        //duration: 1800
-     //}
+      throttling: {
+        usages: 3,
+        duration: 1800
+     }
     });
   }
 

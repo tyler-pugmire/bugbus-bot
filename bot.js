@@ -130,6 +130,7 @@ bot.registry
 		['stream', 'Stream Commands'],
 		['media', 'Media Commands'],
 		['music', 'Music Commands'],
+		['birthday', 'Birthday Commands'],
 	])
 	.registerDefaultTypes()
   .registerCommandsIn(path.join(__dirname, 'commands'));
